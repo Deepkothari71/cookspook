@@ -1,0 +1,34 @@
+[
+    {
+        "url": "https://www.euronews.com",
+        "banner": "Loader\n\n\n\n\n\n\n\nSearch\n\n\n\n\n\n\n\n\n\nBrowse today's tags\n\n\n\nXi Jinping\n\n\nRussia\n\n\nDefence\n\n\nUkraine\n\n\nSummit\n\n\nEuropean Union\n\n\nPoland\n\n\nChina\n\n\nNorth Korea\n\n\nUrsula von der Leyen\n\n\nisrael defense forces IDF\n\n\nPyongyang\n\n\n\n\n\n\n\n\nThemes\n\n\n\nEurope\n\n\nWorld\n\n\nBusiness\n\n\nEU Policy\n\n\nGreen\n\n\nNext\n\n\nHealth\n\n\nTravel\n\n\nCulture\n\n\nVideos\n\n\nProgrammes\n\n\n\n\nServices\n\n\n\nLive\n\n\nBulletin\n\n\nWeather\n\n\nLatest\n\n\nFollow us\n\n\nApps\n\n\nMessaging apps\n\n\nWidgets & Services\n\n\nAfricanews\n\n\n\n\nMore\n\n\n\nAbout Euronews\n\n\nCommercial Services\n\n\nTerms and Conditions\n\n\nCookie Policy\n\n\nPrivacy Policy\n\n\nContact\n\n\nWork at Euronews\n\n\nOur journalists\n\n\nAccessibility: non-compliant\n\n\nModify my cookies choices\n\n\n\n\n\nFollow us\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNewsletters\n\n\n\n\nCopyright \u00a9 euronews 2025",
+        "policy_link": "https://www.euronews.com/tag/eu-policy",
+        "similarity_score": 0.02804115665662847,
+        "label": "Misleading or Inaccurate",
+        "has_opt_out": false
+    },
+    {
+        "url": "https://www.geeksforgeeks.org/matrix-multiplication-with-1-mapreduce-step",
+        "banner": "We use cookies to ensure you have the best browsing experience on our website. By using our site, you\r\n        acknowledge that you have read and understood ourCookie Policy&Privacy PolicyGot It !",
+        "policy_link": "https://www.geeksforgeeks.org/legal/",
+        "similarity_score": 0.019428512766838157,
+        "label": "Misleading or Inaccurate",
+        "has_opt_out": false
+    },
+    {
+        "url": "https://www.stevemadden.com",
+        "banner": "Steve Madden Cookie PreferencesWe and our partners use cookies and other tracking technologies on this site. By using this site, you agree to our use of these tools and to ourPrivacy PolicyandTerms of Use. Edit your privacy settings underYour Privacy Choices.OK",
+        "policy_link": "https://www.stevemadden.com/pages/privacy-policy",
+        "similarity_score": 0.9793013509953002,
+        "label": "Highly Accurate",
+        "has_opt_out": false
+    },
+    {
+        "url": "https://www.boots.com/the-inkey-list",
+        "banner": "shopping with us   shopping with us     A-Z Brands   A-Z Store   Boots Advantage Card   Boots app   sitemap        customer services   customer services     help & FAQs   delivery information   returns & exchange   product recall   contact us        about Boots   about Boots     company information   environmental, social & governance   modern slavery & human trafficking   careers   privacy & cookies   terms & conditions   accessibility              \u00a0    Our partner sites               We accept                                                                                      Copyright \u00a9 The Boots Company PLC. All rights reserved. Boots.com is a trading name of Boots UK Limited. Registered office: Nottingham NG2 3AA.Registered in England: company number 928555. Registered VAT number 116300129. For details of Boots online pharmacy services see Using Our Pharmacy Services page.",
+        "policy_link": "https://www.boots.com/opticians-service/opticians-terms-conditions",
+        "similarity_score": 0.0,
+        "label": "Misleading or Inaccurate",
+        "has_opt_out": false
+    }
+]
