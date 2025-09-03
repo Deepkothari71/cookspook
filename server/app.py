@@ -83,12 +83,18 @@ def analyze():
     }
 
     # Save to one JSON file as a list (same as original)
-    os.makedirs("outputs", exist_ok=True)
-    output_file = os.path.join("outputs", "results.json")
+    # Use /tmp for serverless environments like Vercel; fallback to local 'outputs'
+    base_output_dir = os.environ.get("SERVERLESS_TMP_DIR") or ("/tmp" if os.environ.get("VERCEL") else "outputs")
+    output_dir = os.path.join(base_output_dir, "outputs") if base_output_dir == "/tmp" else base_output_dir
+    os.makedirs(output_dir, exist_ok=True)
+    output_file = os.path.join(output_dir, "results.json")
 
     if os.path.exists(output_file):
         with open(output_file, "r", encoding="utf-8") as f:
-            existing_data = json.load(f)
+            try:
+                existing_data = json.load(f)
+            except Exception:
+                existing_data = []
     else:
         existing_data = []
 

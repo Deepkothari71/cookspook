@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "app.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "functions": {
+    "app.py": {
+      "memory": 1024,
+      "maxDuration": 10,
+      "environment": {
+        "VERCEL_FRONTEND_URL": "https://cookiepookie-ten.vercel.app",
+        "VERCEL": "1"
+      }
+    }
+  },
+  "routes": [
+    { "src": "/(.*)", "dest": "app.py" }
+  ]
+}
