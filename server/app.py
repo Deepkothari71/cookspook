@@ -8,12 +8,22 @@ import math
 from collections import Counter
 
 app = Flask(__name__)
+# Build allowed frontend origins from env (comma-separated) plus sensible defaults
+_env_origins = os.environ.get("VERCEL_FRONTEND_URL") or os.environ.get("FRONTEND_URL") or ""
+parsed_env_origins = [o.strip() for o in _env_origins.split(",") if o.strip()]
 frontend_origins = [
-    "http://localhost:3000",  # local dev frontend
-    os.environ.get("VERCEL_FRONTEND_URL", os.environ.get("FRONTEND_URL", "https://cookiepookie-ten.vercel.app"))
+    "http://localhost:3000",
+    "https://cookiepookie-ten.vercel.app",
+    "https://cookfront.vercel.app",
+    *parsed_env_origins,
 ]
 
-CORS(app, origins=frontend_origins)
+CORS(
+    app,
+    origins=frontend_origins,
+    methods=["GET", "POST", "OPTIONS"],
+    allow_headers=["Content-Type"],
+)
 
 def _tokenize(text: str):
     if not text:
