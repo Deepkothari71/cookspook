@@ -6,6 +6,8 @@ import PageLayout from '../page-layout'
 import { Transition } from '@headlessui/react'
 import Loader from '@/components/Loader'
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://cookspook.vercel.app'
+
 export default function ScanPage() {
   const [url, setUrl] = useState('')
   const [isScanning, setIsScanning] = useState(false)
@@ -16,7 +18,7 @@ export default function ScanPage() {
     setScanResult(null)
 
     try {
-      const response = await fetch('http://localhost:5000/analyze', {
+      const response = await fetch(`${API_BASE_URL}/analyze`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

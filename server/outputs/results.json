@@ -30,5 +30,13 @@
         "similarity_score": 0.0,
         "label": "Misleading or Inaccurate",
         "has_opt_out": false
+    },
+    {
+        "url": "https://www.stevemadden.com/",
+        "banner": "Steve Madden Cookie PreferencesWe and our partners use cookies and other tracking technologies on this site. By using this site, you agree to our use of these tools and to ourPrivacy PolicyandTerms of Use. Edit your privacy settings underYour Privacy Choices.OK",
+        "policy_link": "https://www.stevemadden.com/pages/privacy-policy",
+        "similarity_score": 0.988728398859995,
+        "label": "Highly Accurate",
+        "has_opt_out": false
     }
 ]
