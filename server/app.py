@@ -3,42 +3,67 @@ from flask_cors import CORS
 from extractor import extract_info
 import json
 import os
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics.pairwise import cosine_similarity
-import numpy as np
+import re
+import math
+from collections import Counter
 
 app = Flask(__name__)
 frontend_origins = [
     "http://localhost:3000",  # local dev frontend
-    os.environ.get("VERCEL_FRONTEND_URL", "https://cookiepookie-ten.vercel.app")
+    os.environ.get("VERCEL_FRONTEND_URL", os.environ.get("FRONTEND_URL", "https://cookiepookie-ten.vercel.app"))
 ]
 
 CORS(app, origins=frontend_origins)
 
+def _tokenize(text: str):
+    if not text:
+        return []
+    tokens = re.findall(r"[a-zA-Z0-9]+", text.lower())
+    return [t for t in tokens if len(t) > 2]
+
+def _cosine(v1, v2):
+    dot = 0.0
+    norm1 = 0.0
+    norm2 = 0.0
+    for k in v1:
+        dot += v1[k] * v2.get(k, 0.0)
+        norm1 += v1[k] * v1[k]
+    for k in v2:
+        norm2 += v2[k] * v2[k]
+    if norm1 == 0 or norm2 == 0:
+        return 0.0
+    return dot / (math.sqrt(norm1) + 1e-12) / (math.sqrt(norm2) + 1e-12)
+
 def calculate_similarity(banner, policy_text):
-    """Calculate similarity using TF-IDF and cosine similarity instead of heavy transformers"""
+    """Lightweight TF-IDF cosine similarity without external ML deps"""
     if not banner or not policy_text:
         return 0.0
-    
+
     try:
-        # Create TF-IDF vectors
-        vectorizer = TfidfVectorizer(
-            stop_words='english',
-            ngram_range=(1, 2),
-            max_features=1000
-        )
-        
-        # Combine texts and fit vectorizer
-        texts = [banner, policy_text]
-        tfidf_matrix = vectorizer.fit_transform(texts)
-        
-        # Calculate cosine similarity
-        similarity = cosine_similarity(tfidf_matrix[0:1], tfidf_matrix[1:2])[0][0]
-        
-        return float(similarity)
+        tokens1 = _tokenize(banner)
+        tokens2 = _tokenize(policy_text)
+        if not tokens1 or not tokens2:
+            return 0.0
+
+        # Term frequencies
+        tf1 = Counter(tokens1)
+        tf2 = Counter(tokens2)
+
+        # Document frequencies across two docs
+        vocab = set(tf1.keys()) | set(tf2.keys())
+        df = {t: (1 if t in tf1 else 0) + (1 if t in tf2 else 0) for t in vocab}
+
+        # IDF with smoothing (N=2)
+        N = 2.0
+        idf = {t: math.log((N + 1.0) / (df[t] + 1.0)) + 1.0 for t in vocab}
+
+        # TF-IDF vectors
+        v1 = {t: tf1.get(t, 0) * idf[t] for t in vocab}
+        v2 = {t: tf2.get(t, 0) * idf[t] for t in vocab}
+
+        return float(_cosine(v1, v2))
     except Exception as e:
         print(f"Error calculating similarity: {e}")
-        # Fallback to simple string matching
         return 1.0 if banner.lower() in policy_text.lower() else 0.0
 
 def label_similarity(score):
